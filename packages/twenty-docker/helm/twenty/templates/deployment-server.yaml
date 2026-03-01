@@ -113,8 +113,7 @@ spec:
           command:
             - sh
             - -c
-            - >-
-              npx -y typeorm migration:run -d dist/database/typeorm/core/core.datasource
+            - npx ts-node ./scripts/setup-db.ts && yarn database:migrate:prod
           env:
             {{- if eq (include "twenty.db.useExternalSecret" .) "true" }}
             - name: DB_PASSWORD
